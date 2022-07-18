@@ -2,6 +2,12 @@
 
 A collection of my daily use scripts to save my time and effort.
 
+## Bash
+
+### [Auto_Reboot.sh](https://github.com/hydrotho/iScript/blob/main/Bash/Auto_Reboot.sh)
+
+Automatically reboot the device when it cannot access the Internet.
+
 ## PowerShell
 
 ### [Fastboot_Fix.ps1](https://github.com/hydrotho/iScript/blob/main/PowerShell/Fastboot_Fix.ps1)
