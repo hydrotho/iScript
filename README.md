@@ -10,6 +10,10 @@ Automatically reboot the device when it cannot access the Internet.
 
 ## PowerShell
 
+### [Profile.ps1](https://github.com/hydrotho/iScript/blob/main/PowerShell/Profile.ps1)
+
+My PowerShell profile.
+
 ### [Fastboot_Fix.ps1](https://github.com/hydrotho/iScript/blob/main/PowerShell/Fastboot_Fix.ps1)
 
 Fix "press any key to shutdown" in fastboot mode.
