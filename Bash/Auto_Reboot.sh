@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-set -o errexit
-set -o errtrace
-set -o pipefail
-set -o nounset
+set -euo pipefail
+trap "echo -e '\e[1;31mScript failed: see failed command above\e[0m'" ERR
 
 COUNT=0
 TEST_TARGET=www.baidu.com
