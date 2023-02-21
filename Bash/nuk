@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+TEMP_DIR=$(mktemp -d)
+
+cleanup() {
+  rmdir "$TEMP_DIR"
+}
+trap cleanup EXIT
+
+rsync --recursive --delete "$TEMP_DIR/" "$1/"
+
+rmdir "$1"
