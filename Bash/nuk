@@ -1,5 +1,29 @@
 #!/usr/bin/env bash
 
+empty_and_delete_directory() {
+    local dir=$1
+    # Ensure the provided argument is a directory
+    if [ ! -d "$dir" ]; then
+        echo "$(basename $0): Error: $dir is not a directory. Skipping this argument." >&2
+        return 1
+    fi
+
+    # Clear the target directory if it exists
+    if [ -d "$dir" ]; then
+        rsync --recursive --delete "$TEMP_DIR/" "$dir/"
+    fi
+
+    # Use rmdir to delete the target directory
+    rmdir "$dir"
+}
+
+# Check if at least one directory was provided
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $(basename $0) DIRECTORY [DIRECTORY ...]"
+    echo "Each argument should be a directory. The script will empty and delete all provided directories."
+    exit 64  # BSD convention for command line usage error
+fi
+
 TEMP_DIR=$(mktemp -d)
 
 cleanup() {
@@ -7,6 +31,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-rsync --recursive --delete "$TEMP_DIR/" "$1/"
-
-rmdir "$1"
+for dir in "$@"
+do
+    empty_and_delete_directory "$dir"
+done
