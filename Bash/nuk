@@ -4,7 +4,7 @@ empty_and_delete_directory() {
     local dir=$1
     # Ensure the provided argument is a directory
     if [ ! -d "$dir" ]; then
-        echo "$(basename $0): Error: $dir is not a directory. Skipping this argument." >&2
+        echo "Error: $dir is not a directory. Skipping this argument." >&2
         return 1
     fi
 
