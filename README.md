@@ -60,4 +60,4 @@ Enable or disable PS/2-style keyboard and mouse devices, such as laptop's keyboa
 
 ## License
 
-[GNU General Public License v3.0](LICENSE)
+[MIT](LICENSE)
