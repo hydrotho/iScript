@@ -4,10 +4,6 @@ A collection of my daily use scripts to save my time and effort.
 
 ## Bash
 
-### [Auto_Reboot.sh](Bash/Auto_Reboot.sh)
-
-Automatically reboot the device when it cannot access the Internet.
-
 ### [cpr](Bash/cpr)
 
 A more powerful `cp` command. Powered by `rsync`.
