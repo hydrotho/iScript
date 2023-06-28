@@ -25,20 +25,33 @@ function Test-Administrator {
     $Current.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 }
 
-if (-NOT(Test-Administrator)) {
-    Write-Output "请以管理员权限运行本脚本！"
-    [Microsoft.VisualBasic.Interaction]::MsgBox("请以管理员权限运行本脚本！", "Critical", "一键添加小鹤双拼方案") | Out-Null
-}
-else {
-    try {
-        Get-ItemProperty -Path HKCU:Software\Microsoft\InputMethod\Settings\CHS -Name UserDefinedDoublePinyinScheme0 -ErrorAction Stop | Out-Null
-        Write-Output "小鹤双拼方案已添加！请勿重复运行本脚本！"
-        [Microsoft.VisualBasic.Interaction]::MsgBox("小鹤双拼方案已添加！请勿重复运行本脚本！", "Exclamation", "一键添加小鹤双拼方案") | Out-Null
+function Add-FlypyScheme {
+    param(
+        [Switch]$Quiet
+    )
+
+    if (-NOT(Test-Administrator)) {
+        Write-Error "请以管理员权限运行本脚本！"
+        if (-NOT $Quiet) {
+            [Microsoft.VisualBasic.Interaction]::MsgBox("请以管理员权限运行本脚本！", "Critical", "一键添加小鹤双拼方案") | Out-Null
+        }
     }
-    catch {
-        New-ItemProperty -Path HKCU:Software\Microsoft\InputMethod\Settings\CHS -Name UserDefinedDoublePinyinScheme0 -PropertyType String `
-            -Value "小鹤双拼*2*^*iuvdjhcwfg^xmlnpbksqszxkrltvyovt" | Out-Null
-        Write-Output "小鹤双拼方案添加成功！"
-        [Microsoft.VisualBasic.Interaction]::MsgBox("小鹤双拼方案添加成功！", "Information", "一键添加小鹤双拼方案") | Out-Null
+    else {
+        try {
+            Get-ItemProperty -Path HKCU:Software\Microsoft\InputMethod\Settings\CHS -Name UserDefinedDoublePinyinScheme0 -ErrorAction Stop | Out-Null
+            Write-Error "小鹤双拼方案已添加！请勿重复运行本脚本！"
+            if (-NOT $Quiet) {
+                [Microsoft.VisualBasic.Interaction]::MsgBox("小鹤双拼方案已添加！请勿重复运行本脚本！", "Exclamation", "一键添加小鹤双拼方案") | Out-Null
+            }
+        }
+        catch {
+            New-ItemProperty -Path HKCU:Software\Microsoft\InputMethod\Settings\CHS -Name UserDefinedDoublePinyinScheme0 -PropertyType String -Value "小鹤双拼*2*^*iuvdjhcwfg^xmlnpbksqszxkrltvyovt" -Force | Out-Null
+            Write-Output "小鹤双拼方案添加成功！"
+            if (-NOT $Quiet) {
+                [Microsoft.VisualBasic.Interaction]::MsgBox("小鹤双拼方案添加成功！", "Information", "一键添加小鹤双拼方案") | Out-Null
+            }
+        }
     }
 }
+
+Add-FlypyScheme
