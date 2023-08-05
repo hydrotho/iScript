@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+# Prompt user to select commands for deletion, delete selected commands, and print a summary message
+nl -s' ' -w1 "$HOME/.zsh_history" | fzf --multi --reverse | {
+  lines_deleted=0
+  while IFS= read -r line; do
+    line_number=$(echo "$line" | awk '{print $1}')
+    sed -i "${line_number}d" ~/.zsh_history
+    ((lines_deleted++))
+  done
+
+  if [ $lines_deleted -eq 0 ]; then
+    echo "No commands selected for deletion."
+  else
+    echo "$lines_deleted commands deleted successfully."
+  fi
+}

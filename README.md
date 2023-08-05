@@ -54,6 +54,12 @@ Enable or disable PS/2-style keyboard and mouse devices, such as laptop's keyboa
 
 ⚠ 请以管理员权限运行本脚本
 
+## Zsh
+
+### [ihdel](Zsh/ihdel)
+
+Interactive command history deletion for Zsh. Powered by `fzf`.
+
 ## License
 
 [MIT](LICENSE)
