@@ -12,10 +12,6 @@ A more powerful `cp` command. Powered by `rsync`.
 
 Quickly compare the differences between two folders. Powered by `rsync`.
 
-### [igr](Bash/igr)
-
-Interactive rg wrapper.
-
 ### [mvr](Bash/mvr)
 
 A more powerful `mv` command. Powered by `rsync`.
@@ -23,6 +19,10 @@ A more powerful `mv` command. Powered by `rsync`.
 ### [nuk](Bash/nuk)
 
 Empty folder faster. Powered by `rsync`.
+
+### [rfv](Bash/rfv)
+
+Interactive ripgrep launcher. Powered by `fzf`.
 
 ## PowerShell
 
