@@ -1,17 +1,22 @@
 #!/usr/bin/env zsh
 
-# Prompt user to select commands for deletion, delete selected commands, and print a summary message
-nl -s' ' -w1 "$HOME/.zsh_history" | fzf --multi --reverse | {
-  lines_deleted=0
-  while IFS= read -r line; do
-    line_number=$(echo "$line" | awk '{print $1}')
-    sed -i "${line_number}d" ~/.zsh_history
-    ((lines_deleted++))
-  done
+# Prompt user to select commands for deletion and delete selected commands
+selected_lines=$(nl -s' ' -w1 "$HOME/.zsh_history" | fzf --multi --reverse | awk '{print $1}')
 
-  if [ $lines_deleted -eq 0 ]; then
+if [[ -z $selected_lines ]]; then
     echo "No commands selected for deletion."
-  else
-    echo "$lines_deleted commands deleted successfully."
-  fi
-}
+    exit
+fi
+
+# Generate the sed command string
+sed_command=""
+while IFS= read -r line; do
+    sed_command="${sed_command}${line}d;"
+done < <(echo "$selected_lines")
+
+# Remove the trailing ';'
+sed_command=${sed_command%?}
+
+# Apply the sed command
+sed -i.bak "$sed_command" "$HOME/.zsh_history"
+echo "$(echo "$selected_lines" | wc -l) commands deleted successfully."
