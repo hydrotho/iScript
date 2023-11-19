@@ -1,6 +1,8 @@
 # iScript
 
-A collection of my daily use scripts to save my time and effort.
+Efficient scripts to streamline tasks and save time.
+
+高效脚本，简化任务，节省时间。
 
 ## Bash
 
