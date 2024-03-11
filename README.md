@@ -14,6 +14,10 @@ A more powerful `cp` command. Powered by `rsync`.
 
 Quickly compare the differences between two folders. Powered by `rsync`.
 
+### [git-clone-latest-tag](Bash/git-clone-latest-tag)
+
+Clone the latest tag of a git repository.
+
 ### [mvr](Bash/mvr)
 
 A more powerful `mv` command. Powered by `rsync`.
